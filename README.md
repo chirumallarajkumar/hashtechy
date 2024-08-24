@@ -1,79 +1,118 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# User Management App
 
-# Getting Started
+## Overview
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+This project is a mobile application built using React Native CLI, designed for managing users. It features user list retrieval with infinite scrolling, pull-to-refresh functionality, and detailed views for individual users. The app uses `react-navigation` for navigation and Redux Toolkit with `redux-thunk` for state management and handling asynchronous operations.
 
-## Step 1: Start the Metro Server
+## Features
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- User List with Infinite Scrolling: Automatically loads more users as the user scrolls down the list.
+- Pull-to-Refresh: Allows refreshing the user list to load the latest users.
+- User Details View: Displays detailed information about a selected user.
+- Error Handling: Provides feedback to users when API calls fail or encounter errors.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Project Structure
 
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+```
+.
+├── App.js
+├── navigation
+│   └── AppNavigator.js
+├── screens
+│   ├── UserDetailScreen.js
+│   └── UserListScreen.js
+├── components
+│   ├── InfoBox.js
+│   └── ProfileCard.js
+├── redux
+│   ├── store.js
+│   ├── usersSlice.js
+│   └── userService.js
+└── README.md
 ```
 
-## Step 2: Start your Application
+### Explanation of Structure
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+- App.js: The entry point of the application. It sets up the Redux provider and initializes the main navigator.
+- AppNavigator.js: Handles navigation between screens using `react-navigation`.
+- UserListScreen.js: Displays the list of users, implements infinite scrolling, and provides pull-to-refresh functionality.
+- UserDetailScreen.js: Displays detailed information about the selected user.
+- ProfileCard.js: A reusable component that displays a user's profile information in a card format.
+- InfoBox.js: A reusable component for displaying labeled information (like email, phone, etc.) in a box format.
+- usersSlice.js: Manages user data in Redux, handles asynchronous API calls for fetching user data, and updates the state accordingly.
+- store.js: Configures the Redux store and integrates the users slice.
+- userService.js: Contains functions to interact with the API, specifically to fetch user data.
 
-### For Android
+## Setup Instructions
 
-```bash
-# using npm
-npm run android
+### Prerequisites
 
-# OR using Yarn
-yarn android
-```
+- Node.js (>= 14.x)
+- npm (>= 6.x) or Yarn (>= 1.x)
+- React Native CLI
+- Android Studio or Xcode for running on a physical device or emulator
 
-### For iOS
+### Installation
 
-```bash
-# using npm
-npm run ios
+1. Clone the Repository:
 
-# OR using Yarn
-yarn ios
-```
+   ```bash
+   git clone https://github.com/your-username/MyNewProject.git
+   cd MyNewProject
+   ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+2. Install Dependencies:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+   Using npm:
+   ```bash
+   npm install
+   ```
 
-## Step 3: Modifying your App
+   Or using Yarn:
+   ```bash
+   yarn install
+   ```
 
-Now that you have successfully run the app, let's modify it.
+3. Run the Application:
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+   For Android:
+   ```bash
+   npx react-native run-android
+   ```
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+   For iOS:
+   ```bash
+   npx react-native run-ios
+   ```
 
-## Congratulations! :tada:
+### Running on a Physical Device
 
-You've successfully run and modified your React Native App. :partying_face:
+1. Connect your Android/iOS device to your computer.
+2. Ensure USB debugging is enabled (for Android).
+3. Run the app with `npx react-native run-android` or `npx react-native run-ios`.
 
-### Now what?
+### State Management
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+- Redux Toolkit: Used for managing the global state of the application. It simplifies the setup and usage of Redux, reducing boilerplate code.
+- redux-thunk: Chosen to handle asynchronous actions such as API requests. It allows dispatching functions instead of actions, providing direct access to the Redux store.
 
-# Troubleshooting
+### Navigation
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+- react-navigation: Used to navigate between screens. It’s a popular library in the React Native ecosystem, offering a robust solution for navigation.
 
-# Learn More
+### API Integration
 
-To learn more about React Native, take a look at the following resources:
+- Random User API: The app fetches user data from `https://randomuser.me/api/`. The pagination is handled by passing the `page` parameter, with 10 results per page.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+### Error Handling
+
+- Error Feedback: If the API request fails or any other error occurs, the app displays an appropriate error message to inform the user.
+
+### Component Reusability
+
+- Components like `ProfileCard` and `InfoBox` are designed to be reusable, improving maintainability and scalability of the code.
+
+## Error Handling
+
+- Errors during API calls are captured, and error messages are displayed to the user in the `UserListScreen`. This ensures users are informed of any issues in data retrieval.
+
