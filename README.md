@@ -1,4 +1,4 @@
-# User Management App
+![image](https://github.com/user-attachments/assets/a35365ab-6542-42ae-a1af-098acf0d3744)# User Management App
 
 ## Overview
 
@@ -57,8 +57,8 @@ This project is a mobile application built using React Native CLI, designed for 
 1. Clone the Repository:
 
    ```bash
-   git clone https://github.com/your-username/MyNewProject.git
-   cd MyNewProject
+   git clone https://github.com/chirumallarajkumar/hashtechy.git
+   cd hashtechy
    ```
 
 2. Install Dependencies:
